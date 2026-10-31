@@ -1,0 +1,1052 @@
+{
+  "Завдання 1 — до індексу": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "track_genre": {
+              "$eq": "pop"
+            }
+          },
+          {
+            "audio_features.danceability": {
+              "$gte": 0.7
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "0E1A4507",
+      "planCacheShapeHash": "0E1A4507",
+      "planCacheKey": "F6F4E2CB",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "SORT",
+        "sortPattern": {
+          "popularity": -1
+        },
+        "memLimit": 33554432,
+        "type": "simple",
+        "inputStage": {
+          "stage": "COLLSCAN",
+          "filter": {
+            "$and": [
+              {
+                "track_genre": {
+                  "$eq": "pop"
+                }
+              },
+              {
+                "audio_features.danceability": {
+                  "$gte": 0.7
+                }
+              }
+            ]
+          },
+          "direction": "forward"
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 354,
+      "executionTimeMillis": 74,
+      "totalKeysExamined": 0,
+      "totalDocsExamined": 113999,
+      "executionStages": {
+        "isCached": false,
+        "stage": "SORT",
+        "nReturned": 354,
+        "executionTimeMillisEstimate": 63,
+        "works": 114355,
+        "advanced": 354,
+        "needTime": 114000,
+        "needYield": 0,
+        "saveState": 4,
+        "restoreState": 4,
+        "isEOF": 1,
+        "sortPattern": {
+          "popularity": -1
+        },
+        "memLimit": 33554432,
+        "type": "simple",
+        "totalDataSizeSorted": 197854,
+        "usedDisk": false,
+        "spills": 0,
+        "spilledDataStorageSize": 0,
+        "inputStage": {
+          "stage": "COLLSCAN",
+          "filter": {
+            "$and": [
+              {
+                "track_genre": {
+                  "$eq": "pop"
+                }
+              },
+              {
+                "audio_features.danceability": {
+                  "$gte": 0.7
+                }
+              }
+            ]
+          },
+          "nReturned": 354,
+          "executionTimeMillisEstimate": 63,
+          "works": 114000,
+          "advanced": 354,
+          "needTime": 113645,
+          "needYield": 0,
+          "saveState": 4,
+          "restoreState": 4,
+          "isEOF": 1,
+          "direction": "forward",
+          "docsExamined": 113999
+        }
+      }
+    },
+    "queryShapeHash": "1A88DEBDA8BADFC78D5586B096029691EF8AA74FD1C2D7810C63E983EF0E28FD",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "track_genre": "pop",
+        "audio_features.danceability": {
+          "$gte": 0.7
+        }
+      },
+      "sort": {
+        "popularity": -1
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447825,
+          "i": 8
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "kVsHouIBXlW6TzqK2m7I+jyWsjY=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447825,
+        "i": 8
+      }
+    }
+  },
+  "Завдання 1 — після індексу": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "track_genre": {
+              "$eq": "pop"
+            }
+          },
+          {
+            "audio_features.danceability": {
+              "$gte": 0.7
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "0E1A4507",
+      "planCacheShapeHash": "0E1A4507",
+      "planCacheKey": "D55B24A2",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[MaxKey, MinKey]"
+            ],
+            "audio_features.danceability": [
+              "[0.7, inf.0]"
+            ]
+          }
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 354,
+      "executionTimeMillis": 2,
+      "totalKeysExamined": 412,
+      "totalDocsExamined": 354,
+      "executionStages": {
+        "isCached": false,
+        "stage": "FETCH",
+        "nReturned": 354,
+        "executionTimeMillisEstimate": 0,
+        "works": 412,
+        "advanced": 354,
+        "needTime": 57,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "docsExamined": 354,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 354,
+          "executionTimeMillisEstimate": 0,
+          "works": 412,
+          "advanced": 354,
+          "needTime": 57,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 1,
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[MaxKey, MinKey]"
+            ],
+            "audio_features.danceability": [
+              "[0.7, inf.0]"
+            ]
+          },
+          "keysExamined": 412,
+          "seeks": 58,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    },
+    "queryShapeHash": "1A88DEBDA8BADFC78D5586B096029691EF8AA74FD1C2D7810C63E983EF0E28FD",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "track_genre": "pop",
+        "audio_features.danceability": {
+          "$gte": 0.7
+        }
+      },
+      "sort": {
+        "popularity": -1
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447826,
+          "i": 9
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "7OXJHc3dcTU/Zsso6rWDQzxcmic=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447826,
+        "i": 9
+      }
+    }
+  },
+  "Завдання 2 — до індексу": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "explicit": {
+              "$eq": false
+            }
+          },
+          {
+            "audio_features.speechiness": {
+              "$lt": 0.1
+            }
+          },
+          {
+            "audio_features.instrumentalness": {
+              "$gt": 0.5
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "4F2944AB",
+      "planCacheShapeHash": "4F2944AB",
+      "planCacheKey": "5C43CE97",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "explicit": {
+                "$eq": false
+              }
+            },
+            {
+              "audio_features.speechiness": {
+                "$lt": 0.1
+              }
+            },
+            {
+              "audio_features.instrumentalness": {
+                "$gt": 0.5
+              }
+            }
+          ]
+        },
+        "direction": "forward"
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 16141,
+      "executionTimeMillis": 119,
+      "totalKeysExamined": 0,
+      "totalDocsExamined": 113999,
+      "executionStages": {
+        "isCached": false,
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "explicit": {
+                "$eq": false
+              }
+            },
+            {
+              "audio_features.speechiness": {
+                "$lt": 0.1
+              }
+            },
+            {
+              "audio_features.instrumentalness": {
+                "$gt": 0.5
+              }
+            }
+          ]
+        },
+        "nReturned": 16141,
+        "executionTimeMillisEstimate": 116,
+        "works": 114000,
+        "advanced": 16141,
+        "needTime": 97858,
+        "needYield": 0,
+        "saveState": 7,
+        "restoreState": 7,
+        "isEOF": 1,
+        "direction": "forward",
+        "docsExamined": 113999
+      }
+    },
+    "queryShapeHash": "69675A82F1EE43F40F64986140B9A7F5A3565584A90CA1E01506EE6A28CB38CC",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "audio_features.instrumentalness": {
+          "$gt": 0.5
+        },
+        "audio_features.speechiness": {
+          "$lt": 0.1
+        },
+        "explicit": false
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447826,
+          "i": 11
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "7OXJHc3dcTU/Zsso6rWDQzxcmic=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447826,
+        "i": 11
+      }
+    }
+  },
+  "Завдання 2 — після індексу": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "explicit": {
+              "$eq": false
+            }
+          },
+          {
+            "audio_features.speechiness": {
+              "$lt": 0.1
+            }
+          },
+          {
+            "audio_features.instrumentalness": {
+              "$gt": 0.5
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "4F2944AB",
+      "planCacheShapeHash": "4F2944AB",
+      "planCacheKey": "8EB04DB9",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "explicit": 1,
+            "audio_features.instrumentalness": 1,
+            "audio_features.speechiness": 1
+          },
+          "indexName": "explicit_1_audio_features.instrumentalness_1_audio_features.speechiness_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "explicit": [],
+            "audio_features.instrumentalness": [],
+            "audio_features.speechiness": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "explicit": [
+              "[false, false]"
+            ],
+            "audio_features.instrumentalness": [
+              "(0.5, inf.0]"
+            ],
+            "audio_features.speechiness": [
+              "[-inf.0, 0.1)"
+            ]
+          }
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 16141,
+      "executionTimeMillis": 97,
+      "totalKeysExamined": 16602,
+      "totalDocsExamined": 16141,
+      "executionStages": {
+        "isCached": false,
+        "stage": "FETCH",
+        "nReturned": 16141,
+        "executionTimeMillisEstimate": 84,
+        "works": 16602,
+        "advanced": 16141,
+        "needTime": 460,
+        "needYield": 0,
+        "saveState": 3,
+        "restoreState": 3,
+        "isEOF": 1,
+        "docsExamined": 16141,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 16141,
+          "executionTimeMillisEstimate": 32,
+          "works": 16602,
+          "advanced": 16141,
+          "needTime": 460,
+          "needYield": 0,
+          "saveState": 3,
+          "restoreState": 3,
+          "isEOF": 1,
+          "keyPattern": {
+            "explicit": 1,
+            "audio_features.instrumentalness": 1,
+            "audio_features.speechiness": 1
+          },
+          "indexName": "explicit_1_audio_features.instrumentalness_1_audio_features.speechiness_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "explicit": [],
+            "audio_features.instrumentalness": [],
+            "audio_features.speechiness": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "explicit": [
+              "[false, false]"
+            ],
+            "audio_features.instrumentalness": [
+              "(0.5, inf.0]"
+            ],
+            "audio_features.speechiness": [
+              "[-inf.0, 0.1)"
+            ]
+          },
+          "keysExamined": 16602,
+          "seeks": 461,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    },
+    "queryShapeHash": "69675A82F1EE43F40F64986140B9A7F5A3565584A90CA1E01506EE6A28CB38CC",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "audio_features.instrumentalness": {
+          "$gt": 0.5
+        },
+        "audio_features.speechiness": {
+          "$lt": 0.1
+        },
+        "explicit": false
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447827,
+          "i": 7
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447827,
+        "i": 7
+      }
+    }
+  },
+  "Завдання 3 — без проєкції": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "track_genre": {
+              "$eq": "pop"
+            }
+          },
+          {
+            "popularity": {
+              "$gte": 70
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "122B8EF1",
+      "planCacheShapeHash": "122B8EF1",
+      "planCacheKey": "7F397BE4",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[inf.0, 70]"
+            ],
+            "audio_features.danceability": [
+              "[MinKey, MaxKey]"
+            ]
+          }
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 317,
+      "executionTimeMillis": 0,
+      "totalKeysExamined": 317,
+      "totalDocsExamined": 317,
+      "executionStages": {
+        "isCached": false,
+        "stage": "FETCH",
+        "nReturned": 317,
+        "executionTimeMillisEstimate": 0,
+        "works": 318,
+        "advanced": 317,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "docsExamined": 317,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 317,
+          "executionTimeMillisEstimate": 0,
+          "works": 318,
+          "advanced": 317,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 1,
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[inf.0, 70]"
+            ],
+            "audio_features.danceability": [
+              "[MinKey, MaxKey]"
+            ]
+          },
+          "keysExamined": 317,
+          "seeks": 1,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    },
+    "queryShapeHash": "F4D94A680D3FA9DE0AFF0E509A478A79A27BF6BE3784462646F2A763DFB5CD54",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "track_genre": "pop",
+        "popularity": {
+          "$gte": 70
+        }
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447827,
+          "i": 7
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447827,
+        "i": 7
+      }
+    }
+  },
+  "Завдання 3 — з проєкцією лише полів індексу": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "spotify.tracks",
+      "parsedQuery": {
+        "$and": [
+          {
+            "track_genre": {
+              "$eq": "pop"
+            }
+          },
+          {
+            "popularity": {
+              "$gte": 70
+            }
+          }
+        ]
+      },
+      "indexFilterSet": false,
+      "queryHash": "0C3B2F14",
+      "planCacheShapeHash": "0C3B2F14",
+      "planCacheKey": "C5EB36C6",
+      "optimizationTimeMillis": 0,
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "prunedSimilarIndexes": false,
+      "winningPlan": {
+        "isCached": false,
+        "stage": "PROJECTION_COVERED",
+        "transformBy": {
+          "_id": 0,
+          "track_genre": 1,
+          "popularity": 1
+        },
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[inf.0, 70]"
+            ],
+            "audio_features.danceability": [
+              "[MinKey, MaxKey]"
+            ]
+          }
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 317,
+      "executionTimeMillis": 0,
+      "totalKeysExamined": 317,
+      "totalDocsExamined": 0,
+      "executionStages": {
+        "isCached": false,
+        "stage": "PROJECTION_COVERED",
+        "nReturned": 317,
+        "executionTimeMillisEstimate": 0,
+        "works": 318,
+        "advanced": 317,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "transformBy": {
+          "_id": 0,
+          "track_genre": 1,
+          "popularity": 1
+        },
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 317,
+          "executionTimeMillisEstimate": 0,
+          "works": 318,
+          "advanced": 317,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 1,
+          "keyPattern": {
+            "track_genre": 1,
+            "popularity": -1,
+            "audio_features.danceability": 1
+          },
+          "indexName": "track_genre_1_popularity_-1_audio_features.danceability_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "track_genre": [],
+            "popularity": [],
+            "audio_features.danceability": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "track_genre": [
+              "[\"pop\", \"pop\"]"
+            ],
+            "popularity": [
+              "[inf.0, 70]"
+            ],
+            "audio_features.danceability": [
+              "[MinKey, MaxKey]"
+            ]
+          },
+          "keysExamined": 317,
+          "seeks": 1,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    },
+    "queryShapeHash": "CBB42147211E4DBEDD56898856D455232D500C54396CC5C5E888C97BAF05DC65",
+    "command": {
+      "find": "tracks",
+      "filter": {
+        "track_genre": "pop",
+        "popularity": {
+          "$gte": 70
+        }
+      },
+      "projection": {
+        "_id": 0,
+        "track_genre": 1,
+        "popularity": 1
+      },
+      "$db": "spotify"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 16793600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 33554432,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted",
+      "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+    },
+    "ok": 1,
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1793447827,
+          "i": 7
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7657564610140045000
+      }
+    },
+    "operationTime": {
+      "$timestamp": {
+        "t": 1793447827,
+        "i": 7
+      }
+    }
+  }
+}

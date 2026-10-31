@@ -1,0 +1,12 @@
+[project]
+name = "shcherbaniuk-nosql-1"
+version = "0.1.0"
+description = "NoSQL HW1: MongoDB analytics platform on Spotify Tracks Dataset"
+requires-python = ">=3.11"
+dependencies = [
+    "kaggle>=2.2.5",
+    "pandas>=3.1.0",
+    "pymongo>=4.19.0",
+    "python-dotenv>=1.2.4",
+    "tqdm>=4.70.1",
+]
