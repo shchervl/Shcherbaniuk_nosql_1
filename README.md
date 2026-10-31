@@ -106,9 +106,20 @@ mongosh "$MONGO_URI" --file queries/part3_indexes.js
 Особливість даних: унікальних `track_id` 89 740, бо один трек може належати кільком жанрам
 (16 299 таких треків). Це треба враховувати в запитах, що рахують треки (завдання 2 частини 2).
 
-## Скріншоти
+## Вивід із термінала
 
-TODO
+Аналіз індексів (частина 3) — `mongosh "$MONGO_URI" --file queries/part3_indexes.js`.
+Повні `explain("executionStats")` кожного запиту — у [`queries/part3_explain.json`](queries/part3_explain.json).
+
+```
+Завдання 1 — до індексу: SORT → COLLSCAN | indexName: — | nReturned: 354 | totalKeysExamined: 0 | totalDocsExamined: 113999 | executionTimeMillis: 77
+Завдання 1 — після індексу: FETCH → IXSCAN | indexName: track_genre_1_popularity_-1_audio_features.danceability_1 | nReturned: 354 | totalKeysExamined: 412 | totalDocsExamined: 354 | executionTimeMillis: 3
+Завдання 2 — до індексу: COLLSCAN | indexName: — | nReturned: 16141 | totalKeysExamined: 0 | totalDocsExamined: 113999 | executionTimeMillis: 131
+Завдання 2 — після індексу: FETCH → IXSCAN | indexName: explicit_1_audio_features.instrumentalness_1_audio_features.speechiness_1 | nReturned: 16141 | totalKeysExamined: 16602 | totalDocsExamined: 16141 | executionTimeMillis: 37
+Завдання 3 — без проєкції: FETCH → IXSCAN | indexName: track_genre_1_popularity_-1_audio_features.danceability_1 | nReturned: 317 | totalKeysExamined: 317 | totalDocsExamined: 317 | executionTimeMillis: 0
+Завдання 3 — з проєкцією лише полів індексу: PROJECTION_COVERED → IXSCAN | indexName: track_genre_1_popularity_-1_audio_features.danceability_1 | nReturned: 317 | totalKeysExamined: 317 | totalDocsExamined: 0 | executionTimeMillis: 0
+Повні explain() збережено в queries/part3_explain.json
+```
 
 ## Відповіді на питання
 
@@ -181,7 +192,7 @@ TODO
 | `nReturned` | 354 | 354 |
 | `totalKeysExamined` | 0 | 412 |
 | `totalDocsExamined` | 113 999 | 354 |
-| `executionTimeMillis` | 76 | 2 |
+| `executionTimeMillis` | 77 | 3 |
 
 *Що змінилося в плані виконання?* Замість повного перебору колекції (`COLLSCAN`) і сортування в пам'яті (`SORT`)
 MongoDB читає лише ключі індексу для `pop`, і вони вже впорядковані за `popularity`, тому стадія `SORT` зникла.
@@ -201,7 +212,7 @@ MongoDB читає лише ключі індексу для `pop`, і вони 
 | `nReturned` | 16 141 | 16 141 |
 | `totalKeysExamined` | 0 | 16 602 |
 | `totalDocsExamined` | 113 999 | 16 141 |
-| `executionTimeMillis` | 168 | 41 |
+| `executionTimeMillis` | 131 | 37 |
 
 Індекс використовується: `IXSCAN` з цим `indexName`, і документів читається рівно стільки, скільки повертається.
 

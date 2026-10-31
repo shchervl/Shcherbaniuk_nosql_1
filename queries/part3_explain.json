@@ -65,7 +65,7 @@
         "isCached": false,
         "stage": "SORT",
         "nReturned": 354,
-        "executionTimeMillisEstimate": 63,
+        "executionTimeMillisEstimate": 61,
         "works": 114355,
         "advanced": 354,
         "needTime": 114000,
@@ -99,7 +99,7 @@
             ]
           },
           "nReturned": 354,
-          "executionTimeMillisEstimate": 63,
+          "executionTimeMillisEstimate": 59,
           "works": 114000,
           "advanced": 354,
           "needTime": 113645,
@@ -142,14 +142,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447825,
+          "t": 1793448358,
           "i": 8
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "kVsHouIBXlW6TzqK2m7I+jyWsjY=",
+            "base64": "nVPbiCQ/LFNZGtNpGMECZavugxU=",
             "subType": "00"
           }
         },
@@ -158,7 +158,7 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447825,
+        "t": 1793448358,
         "i": 8
       }
     }
@@ -323,14 +323,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447826,
-          "i": 9
+          "t": 1793448358,
+          "i": 19
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "7OXJHc3dcTU/Zsso6rWDQzxcmic=",
+            "base64": "nVPbiCQ/LFNZGtNpGMECZavugxU=",
             "subType": "00"
           }
         },
@@ -339,8 +339,8 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447826,
-        "i": 9
+        "t": 1793448358,
+        "i": 19
       }
     }
   },
@@ -405,7 +405,7 @@
     "executionStats": {
       "executionSuccess": true,
       "nReturned": 16141,
-      "executionTimeMillis": 119,
+      "executionTimeMillis": 125,
       "totalKeysExamined": 0,
       "totalDocsExamined": 113999,
       "executionStages": {
@@ -431,7 +431,7 @@
           ]
         },
         "nReturned": 16141,
-        "executionTimeMillisEstimate": 116,
+        "executionTimeMillisEstimate": 123,
         "works": 114000,
         "advanced": 16141,
         "needTime": 97858,
@@ -473,14 +473,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447826,
-          "i": 11
+          "t": 1793448359,
+          "i": 1
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "7OXJHc3dcTU/Zsso6rWDQzxcmic=",
+            "base64": "usn05utXfVy028mC2TwNyjR56Rc=",
             "subType": "00"
           }
         },
@@ -489,8 +489,8 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447826,
-        "i": 11
+        "t": 1793448359,
+        "i": 1
       }
     }
   },
@@ -566,33 +566,33 @@
     "executionStats": {
       "executionSuccess": true,
       "nReturned": 16141,
-      "executionTimeMillis": 97,
+      "executionTimeMillis": 60,
       "totalKeysExamined": 16602,
       "totalDocsExamined": 16141,
       "executionStages": {
         "isCached": false,
         "stage": "FETCH",
         "nReturned": 16141,
-        "executionTimeMillisEstimate": 84,
+        "executionTimeMillisEstimate": 55,
         "works": 16602,
         "advanced": 16141,
         "needTime": 460,
         "needYield": 0,
-        "saveState": 3,
-        "restoreState": 3,
+        "saveState": 4,
+        "restoreState": 4,
         "isEOF": 1,
         "docsExamined": 16141,
         "alreadyHasObj": 0,
         "inputStage": {
           "stage": "IXSCAN",
           "nReturned": 16141,
-          "executionTimeMillisEstimate": 32,
+          "executionTimeMillisEstimate": 23,
           "works": 16602,
           "advanced": 16141,
           "needTime": 460,
           "needYield": 0,
-          "saveState": 3,
-          "restoreState": 3,
+          "saveState": 4,
+          "restoreState": 4,
           "isEOF": 1,
           "keyPattern": {
             "explicit": 1,
@@ -659,14 +659,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447827,
-          "i": 7
+          "t": 1793448359,
+          "i": 13
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "base64": "usn05utXfVy028mC2TwNyjR56Rc=",
             "subType": "00"
           }
         },
@@ -675,8 +675,8 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447827,
-        "i": 7
+        "t": 1793448359,
+        "i": 13
       }
     }
   },
@@ -837,14 +837,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447827,
-          "i": 7
+          "t": 1793448359,
+          "i": 13
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "base64": "usn05utXfVy028mC2TwNyjR56Rc=",
             "subType": "00"
           }
         },
@@ -853,8 +853,8 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447827,
-        "i": 7
+        "t": 1793448359,
+        "i": 13
       }
     }
   },
@@ -1028,14 +1028,14 @@
     "$clusterTime": {
       "clusterTime": {
         "$timestamp": {
-          "t": 1793447827,
-          "i": 7
+          "t": 1793448359,
+          "i": 13
         }
       },
       "signature": {
         "hash": {
           "$binary": {
-            "base64": "k8JonYap2Rox6O52vh1hWdNEJyY=",
+            "base64": "usn05utXfVy028mC2TwNyjR56Rc=",
             "subType": "00"
           }
         },
@@ -1044,8 +1044,8 @@
     },
     "operationTime": {
       "$timestamp": {
-        "t": 1793447827,
-        "i": 7
+        "t": 1793448359,
+        "i": 13
       }
     }
   }
